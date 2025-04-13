@@ -25,7 +25,7 @@ export class InventoryService {
 
     // Look for records by name
     getItemByName(name: string): Observable<Item[]> {
-        return this.http.get<Item[]>(`${this.url}${name}`);
+        return this.http.get<Item[]>(this.url + name);
     }
 
     // Add new Item

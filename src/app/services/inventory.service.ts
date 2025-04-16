@@ -40,6 +40,7 @@ export class InventoryService {
     }
 
     // Used for data validation in the case of additions, updates, etc
+    // 还需要添加name不为数字的验证，必须为text
     dataValidation(newItem: Item, allItems: Item[]): string | null {
         // Verify that the Item ID is an integer
         if (typeof newItem.item_id !== 'number') {

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { InventoryService } from '../services/inventory.service';
 import { Item } from '../models/item.model';
-
+import { MenuController } from '@ionic/angular';
 @Component({
   selector: 'app-tab3',
   templateUrl: 'tab3.page.html',
@@ -21,12 +21,18 @@ export class Tab3Page implements OnInit {
     featured_item: 0,
     special_note: ''
   };
+  // 被选中的进行增删操作的item
+  checkedItem: Item | null = null;
+  // 视图选项
   sidebarView: 'overview' | 'modify' | 'add' = 'overview';
+  // 侧边Menu的状态
+  sideMenuStatu = false;
 
   constructor(private inventoryService: InventoryService) { }
   ngOnInit(): void {
     this.getItems();
   }
+
   getItems() {
     this.inventoryService.getAllItems().subscribe({
       next: (items: Item[]) => {
@@ -66,7 +72,12 @@ export class Tab3Page implements OnInit {
     });
   }
 
-  // 这里需要添加删除提示
+  selectItem() {
+    // this.checkedItem = {...item};
+
+  }
+
+  // 这里需要添加删除提示,同时不能删除Laptop
   deleteItem(name: string) {
     this.inventoryService.deleteItem(name).subscribe({
       next: () => {
@@ -78,6 +89,23 @@ export class Tab3Page implements OnInit {
     });
   }
 
+  openMenu() {
+    const menu = document.querySelector('ion-menu');
+    if (menu) {
+      menu.open();
+      this.sideMenuStatu = true;
+    }
+  }
+
+  closeMenu() {
+    const menu = document.querySelector('ion-menu');
+    if (menu) {
+      menu.close();
+      this.sideMenuStatu = false;
+    }
+  }
+
+  // 用于切换该页面的视图
   switchView(selectedView: 'overview' | 'modify' | 'add') {
     this.sidebarView = selectedView;
     if (selectedView === 'overview' || selectedView === 'modify') {

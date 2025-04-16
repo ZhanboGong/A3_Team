@@ -25,4 +25,6 @@ export class Tab1Page implements OnInit {
       }
     });
   }
+
+  // 添加一个方法，获取Featured Item的数量
 }

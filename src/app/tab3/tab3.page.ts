@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { InventoryService } from '../services/inventory.service';
 import { Item } from '../models/item.model';
-import { MenuController } from '@ionic/angular';
+import { AlertButton, AlertController } from '@ionic/angular';
+import { IonButton } from '@ionic/angular';
+
 @Component({
   selector: 'app-tab3',
   templateUrl: 'tab3.page.html',
@@ -27,8 +29,10 @@ export class Tab3Page implements OnInit {
   sidebarView: 'overview' | 'modify' | 'add' = 'overview';
   // 侧边Menu的状态
   sideMenuStatu = false;
+  // update modal statu
+  updateModelStatu = false;
 
-  constructor(private inventoryService: InventoryService) { }
+  constructor(private inventoryService: InventoryService, private alertController: AlertController) { }
   ngOnInit(): void {
     this.getItems();
   }
@@ -72,8 +76,9 @@ export class Tab3Page implements OnInit {
     });
   }
 
-  selectItem() {
-    // this.checkedItem = {...item};
+  selectItem(item: Item) {
+    this.checkedItem = { ...item };
+    this.openUpdateModel();
 
   }
 
@@ -111,5 +116,43 @@ export class Tab3Page implements OnInit {
     if (selectedView === 'overview' || selectedView === 'modify') {
       this.getItems();
     }
+  }
+
+  // 模态窗口
+  openUpdateModel() {
+    if (this.checkedItem) {
+      this.updateModelStatu = true;
+    }
+  }
+
+  closeUpdateModel() {
+    this.checkedItem = null;
+    this.updateModelStatu = false;
+  }
+
+  // 删除弹窗提示
+  async deletePrompt(name: string) {
+    const alert = await this.alertController.create({
+      header: "Deletion Confirmation",
+      message: "Make sure to delete item " + name,
+      buttons: [
+        {
+          text: "Cancel",
+          role: "cancel",
+          cssClass: 'secondary',
+          handler: () => {
+            console.log("The deletion of " + name + " is cancelled.");
+          }
+        },
+        {
+          text: 'Confirm',
+          handler: () => {
+            this.deleteItem(name);
+          }
+        }
+      ]
+    });
+
+    await alert.present();
   }
 }

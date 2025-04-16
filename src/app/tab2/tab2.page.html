@@ -35,9 +35,9 @@
       <ion-card *ngFor="let item of items">
         <ion-card-header>
           <ion-card-title>{{ item.item_name }}</ion-card-title>
+          <ion-card-subtitle>Item ID: {{ item.item_id }}</ion-card-subtitle>
         </ion-card-header>
         <ion-card-content>
-          <p>Item ID: {{ item.item_id }}</p>
           <p>Category: {{ item.category }}</p>
           <p>Quantity: {{ item.quantity }}</p>
           <p>Price: ${{ item.price }}</p>

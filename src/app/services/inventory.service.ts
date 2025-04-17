@@ -48,22 +48,10 @@ export class InventoryService {
             return "Item ID Must be a Number!";
         }
 
-        // Verify that the Item ID must be Unique
-        if (allItems.some(item => item.item_id === newItem.item_id)) {
-            console.error('Validation Error: item_id must be unique.');
-            return "Item ID Must be Unique!";
-        }
-
         // Verify that the Item Name cannot be Empty
         if (!newItem.item_name || newItem.item_name.trim() === "") {
             console.error("Validation Error: item_name cannot be empty.");
             return "Item Name cannot be Empty!";
-        }
-
-        // Verify that the Item Name must be Unique
-        if (allItems.some(item => item.item_name === newItem.item_name)) {
-            console.error("Validation Error: item_name must be unique");
-            return "Item Name Must be Unique!";
         }
 
         // Verify that the Supplier Name cannot be Empty
@@ -73,7 +61,7 @@ export class InventoryService {
         }
 
         // Verify that the Radio Input cannot be empty
-        if (!newItem.category || !newItem.stock_status || !newItem.featured_item) {
+        if (newItem.category === null || newItem.stock_status === null || newItem.featured_item === null) {
             console.error("Validation Error: Radio Input cannot be Empty");
             return "Radio Input cannot be Empty!";
         }
@@ -88,6 +76,18 @@ export class InventoryService {
         if (newItem.quantity < 0 || !(newItem.quantity % 1 === 0)) {
             console.error("Validation Error: quantity must be a positive integer.");
             return "Item Quantity must be a positive integer!";
+        }
+
+        // Verify that the Item ID must be Unique
+        if (allItems.some(item => item.item_id === newItem.item_id)) {
+            console.error('Validation Error: item_id must be unique.');
+            return "Item ID Must be Unique!";
+        }
+
+        // Verify that the Item Name must be Unique
+        if (allItems.some(item => item.item_name === newItem.item_name)) {
+            console.error("Validation Error: item_name must be unique");
+            return "Item Name Must be Unique!";
         }
 
         return null;

@@ -13,7 +13,7 @@ export interface Item {
     // Supplier Name: varchar
     supplier_name: string;
     // Stock Status: enum
-    stock_status: 'In Stock' | 'Low Stock' | 'Out of Stock';
+    stock_status: 'In stock' | 'Low stock' | 'Out of stock';
     // Featured Item: int(0/1)
     featured_item: 0 | 1;
     // Special Note: varchar, no requir

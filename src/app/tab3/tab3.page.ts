@@ -19,7 +19,7 @@ export class Tab3Page implements OnInit {
     quantity: 0,
     price: 0,
     supplier_name: '',
-    stock_status: 'In Stock',
+    stock_status: 'In stock',
     featured_item: 0,
     special_note: ''
   };
@@ -53,7 +53,7 @@ export class Tab3Page implements OnInit {
   addNewItem() {
     const validationMessage = this.inventoryService.dataValidation(this.newItem, this.items);
     if (validationMessage) {
-
+      this.validationMessage(validationMessage);
       return;
     }
     this.inventoryService.addRecord(this.newItem).subscribe({
@@ -66,7 +66,7 @@ export class Tab3Page implements OnInit {
           quantity: 0,
           price: 0,
           supplier_name: '',
-          stock_status: 'In Stock',
+          stock_status: 'In stock',
           featured_item: 0,
           special_note: ''
         };
@@ -101,7 +101,8 @@ export class Tab3Page implements OnInit {
     if (this.checkedItem && this.lastItem) {
       const updateMessage = this.inventoryService.dataValidation(this.checkedItem, this.items);
       if (this.lastItem.item_id === this.checkedItem.item_id) {
-        if (updateMessage && updateMessage !== "Item ID Must be Unique!") {
+        // 这两个验证跳过可能得分开来
+        if (updateMessage && updateMessage !== "Item ID Must be Unique!" && updateMessage !== "Item Name Must be Unique!") {
           this.validationMessage(updateMessage);
           return;
         }
@@ -155,6 +156,7 @@ export class Tab3Page implements OnInit {
     if (this.checkedItem) {
       this.updateModelStatu = true;
     }
+    console.log(this.checkedItem);
   }
 
   closeUpdateModel() {

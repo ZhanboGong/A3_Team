@@ -98,3 +98,27 @@ ion-row {
         --margin-start: 5px;
     }
 }
+
+ion-card-content {
+    .card-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 10px;
+    }
+
+    .left-card {
+        flex: 1;
+    }
+
+    .right-card {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+    }
+
+    ion-icon {
+        font-size: 24px;
+        cursor: pointer;
+    }
+}

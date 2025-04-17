@@ -99,7 +99,20 @@ export class Tab3Page implements OnInit {
   // 这里可能有一些bug，需要test
   updateItem() {
     if (this.checkedItem && this.lastItem) {
-      // 验证
+      const updateMessage = this.inventoryService.dataValidation(this.checkedItem, this.items);
+      if (this.lastItem.item_id === this.checkedItem.item_id) {
+        if (updateMessage && updateMessage !== "Item ID Must be Unique!") {
+          this.validationMessage(updateMessage);
+          return;
+        }
+      }
+      else {
+        if (updateMessage) {
+          this.validationMessage(updateMessage);
+          return;
+        }
+      }
+
       this.inventoryService.updateItem(this.lastItem.item_name, this.checkedItem).subscribe({
         next: () => {
           this.getItems();
@@ -107,6 +120,7 @@ export class Tab3Page implements OnInit {
         },
         error: (error: any) => {
           console.error("Error Updating Item: ", error)
+          this.validationMessage("Update failed, please check whether the data is correct.")
         }
       });
     }

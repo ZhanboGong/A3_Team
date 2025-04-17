@@ -25,6 +25,8 @@ export class Tab3Page implements OnInit {
   };
   // 被选中的进行增删操作的item
   checkedItem: Item | null = null;
+  // 被修改前的选中的Item
+  lastItem: Item | null = null;
   // 视图选项
   sidebarView: 'overview' | 'modify' | 'add' = 'overview';
   // 侧边Menu的状态
@@ -51,8 +53,7 @@ export class Tab3Page implements OnInit {
   addNewItem() {
     const validationMessage = this.inventoryService.dataValidation(this.newItem, this.items);
     if (validationMessage) {
-      // Add promot tips
-      // this.message = validationMessage;
+
       return;
     }
     this.inventoryService.addRecord(this.newItem).subscribe({
@@ -78,6 +79,7 @@ export class Tab3Page implements OnInit {
 
   selectItem(item: Item) {
     this.checkedItem = { ...item };
+    this.lastItem = this.checkedItem;
     this.openUpdateModel();
 
   }
@@ -92,6 +94,22 @@ export class Tab3Page implements OnInit {
         console.error('Error deleting item:', error);
       }
     });
+  }
+
+  // 这里可能有一些bug，需要test
+  updateItem() {
+    if (this.checkedItem && this.lastItem) {
+      // 验证
+      this.inventoryService.updateItem(this.lastItem.item_name, this.checkedItem).subscribe({
+        next: () => {
+          this.getItems();
+          this.closeUpdateModel();
+        },
+        error: (error: any) => {
+          console.error("Error Updating Item: ", error)
+        }
+      });
+    }
   }
 
   openMenu() {
@@ -155,4 +173,22 @@ export class Tab3Page implements OnInit {
 
     await alert.present();
   }
+
+  // 提示弹窗
+  async validationMessage(message: string) {
+    const alert = await this.alertController.create({
+      header: "Validation Message",
+      message: message,
+      buttons: [
+        {
+          text: "Close",
+          handler: () => {
+            alert.dismiss();
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+
 }

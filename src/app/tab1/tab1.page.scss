@@ -98,3 +98,97 @@ ion-row {
         --margin-start: 5px;
     }
 }
+
+// 介绍区域样式
+.intro-section {
+    margin-bottom: 32px;
+  
+    //系统介绍卡片
+    .header-card {
+    text-align: center;
+    background: var(--ion-color-primary);
+    color: white;
+
+      .main-title {
+        font-size: 32px;
+        margin-bottom: 5px;
+        color: white;
+      }
+  
+      .description {
+        font-size: 18px;
+        margin: 24px 0;
+      }
+  
+      .cta-button {
+        margin-top: 24px;
+        border-radius: 25px;
+      }
+    }
+  
+    //功能介绍卡片
+    .feature-card {
+      margin-top: 24px;
+  
+      ion-icon {
+        font-size: 28px;
+        margin-right: 16px;
+      }
+  
+      h3 {
+        margin-bottom: 5px;
+      }
+  
+      p {
+        font-size: 14px;
+      }
+    }
+  }
+  
+  // 统计卡片样式
+  .stats-grid {
+    gap: 16px;
+  
+    .stat-card {
+      .stat-item {
+        padding: 16px 0;
+        
+        .stat-icon {
+          font-size: 40px;
+          margin-right: 24px;
+        }
+  
+        h2 {
+          font-size: 35px;
+        }
+  
+        p {
+          margin: 5px 0 0;
+        }
+      }
+    }
+  }
+  
+  ion-header {
+    ion-toolbar {
+      border-radius: 0 0 20px 20px;
+      
+      ion-item {
+        ion-label {
+          font-size: 14px;
+        }
+        
+        p {
+          font-size: 24px;
+          
+          ion-icon {
+            font-size: 20px;
+          }
+        }
+      }
+    }
+  }
+  
+  ion-searchbar {
+    font-size: 16px;
+  }

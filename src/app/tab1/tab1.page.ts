@@ -10,7 +10,10 @@ import { Item } from '../models/item.model';
 })
 export class Tab1Page implements OnInit {
   items: Item[] = [];
+  featuredCount: number = 0; // Featured 数量属性
+
   constructor(private inventoryService: InventoryService) { }
+
   ngOnInit(): void {
     this.getItems();
   }
@@ -19,6 +22,7 @@ export class Tab1Page implements OnInit {
     this.inventoryService.getAllItems().subscribe({
       next: (items: Item[]) => {
         this.items = items;
+        this.featuredCount = this.calculateFeaturedCount(); // 计算Featured数量
       },
       error: (error: any) => {
         console.error('Error fetching items:', error);
@@ -26,5 +30,8 @@ export class Tab1Page implements OnInit {
     });
   }
 
-  // 添加一个方法，获取Featured Item的数量
+  //计算Featured 数量
+  private calculateFeaturedCount(): number {
+    return this.items.filter(item => item.featured_item === 1).length;
+  }
 }

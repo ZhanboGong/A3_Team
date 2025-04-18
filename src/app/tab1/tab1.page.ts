@@ -13,17 +13,18 @@ export class Tab1Page implements OnInit {
   items: Item[] = [];
   featuredCount = 0;
   categoryList = [
-    { name: 'Electronics', count: 0, icon: 'hardware-chip'},
-    { name: 'Furniture', count: 0, icon: 'bed'},
-    { name: 'Clothing', count: 0, icon: 'shirt'},
-    { name: 'Tools', count: 0, icon: 'build'},
-    { name: 'Miscellaneous', count: 0, icon: 'cube'}
+    { name: 'Electronics', count: 0, icon: 'hardware-chip' },
+    { name: 'Furniture', count: 0, icon: 'bed' },
+    { name: 'Clothing', count: 0, icon: 'shirt' },
+    { name: 'Tools', count: 0, icon: 'build' },
+    { name: 'Miscellaneous', count: 0, icon: 'cube' }
   ];
+  helpModelStatu = false;
 
   constructor(
     private inventoryService: InventoryService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.getItems();
@@ -48,5 +49,16 @@ export class Tab1Page implements OnInit {
 
   navigateToManage() {
     this.router.navigateByUrl('/tabs/tab3');
+  }
+
+  // modal
+  openHelpModel() {
+    this.helpModelStatu = true;
+    console.log("Manage Page Help open");
+  }
+
+  closeHelpModel() {
+    this.helpModelStatu = false;
+    console.log("Manage Page Help close");
   }
 }

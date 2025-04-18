@@ -33,6 +33,8 @@ export class Tab3Page implements OnInit {
   sideMenuStatu = false;
   // update modal statu
   updateModelStatu = false;
+  // help modal statu
+  helpModelStatu = false;
 
   constructor(private inventoryService: InventoryService, private alertController: AlertController) { }
   ngOnInit(): void {
@@ -162,6 +164,16 @@ export class Tab3Page implements OnInit {
   closeUpdateModel() {
     this.checkedItem = null;
     this.updateModelStatu = false;
+  }
+
+  openHelpModel() {
+    this.helpModelStatu = true;
+    console.log("Manage Page Help open");
+  }
+
+  closeHelpModel() {
+    this.helpModelStatu = false;
+    console.log("Manage Page Help close");
   }
 
   // 删除弹窗提示

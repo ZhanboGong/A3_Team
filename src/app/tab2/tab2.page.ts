@@ -12,6 +12,7 @@ export class Tab2Page implements OnInit {
   items: Item[] = [];
   allItems: Item[] = [];
   searchTerm: any;
+  helpModelStatu = false;
 
   constructor(private inventoryService: InventoryService) { }
 
@@ -53,6 +54,17 @@ export class Tab2Page implements OnInit {
     } else {
       this.items = this.allItems;
     }
+  }
+
+  // modal
+  openHelpModel() {
+    this.helpModelStatu = true;
+    console.log("Manage Page Help open");
+  }
+
+  closeHelpModel() {
+    this.helpModelStatu = false;
+    console.log("Manage Page Help close");
   }
 
 }

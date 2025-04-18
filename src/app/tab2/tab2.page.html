@@ -12,7 +12,7 @@
           </ion-button>
         </p>
       </ion-label>
-      <ion-button slot="end">
+      <ion-button slot="end" (click)="openHelpModel()">
         <ion-icon slot="icon-only" name="help-circle-outline"></ion-icon>
       </ion-button>
       <ion-button slot="end" class="notification">
@@ -27,6 +27,18 @@
       </ion-col>
     </ion-row>
   </ion-toolbar>
+  <ion-modal [isOpen]="helpModelStatu">
+    <ng-template>
+      <ion-button (click)="closeHelpModel()">Return</ion-button>
+      <ion-card class="help-card">
+        <ion-card-header>
+          <ion-card-title>HELP</ion-card-title>
+          <ion-card-subtitle>Search</ion-card-subtitle>
+          <ion-content></ion-content>
+        </ion-card-header>
+      </ion-card>
+    </ng-template>
+  </ion-modal>
 </ion-header>
 
 <ion-content>

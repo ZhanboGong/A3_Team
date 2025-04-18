@@ -11,7 +11,7 @@
           </ion-button>
         </p>
       </ion-label>
-      <ion-button slot="end">
+      <ion-button slot="end" (click)="openHelpModel()">
         <ion-icon slot="icon-only" name="help-circle-outline"></ion-icon>
       </ion-button>
       <ion-button slot="end" class="notification">
@@ -26,6 +26,20 @@
       </ion-col>
     </ion-row>
   </ion-toolbar>
+  <!--help modal-->
+  <ion-modal [isOpen]="helpModelStatu">
+    <ng-template>
+      <!--这里到时候可以改成return icon-->
+      <ion-button (click)="closeHelpModel()">Return</ion-button>
+      <ion-card class="help-card">
+        <ion-card-header>
+          <ion-card-title>HELP</ion-card-title>
+          <ion-card-subtitle>Home</ion-card-subtitle>
+          <ion-content></ion-content>
+        </ion-card-header>
+      </ion-card>
+    </ng-template>
+  </ion-modal>
 </ion-header>
 
 <ion-content>
@@ -84,7 +98,7 @@
     <ion-card-header>
       <ion-card-title>Inventory Overview</ion-card-title>
     </ion-card-header>
-    
+
     <ion-card-content>
       <!-- 核心统计 -->
       <div class="core-stats">
@@ -93,7 +107,7 @@
           <div class="stat-value">{{ items.length }}</div>
           <div class="stat-label">Total Items</div>
         </div>
-        
+
         <div class="stat-item accent">
           <ion-icon name="star" class="stat-icon"></ion-icon>
           <div class="stat-value">{{ featuredCount }}</div>
@@ -104,9 +118,7 @@
       <!-- 分类统计 -->
       <div class="category-grid">
         <div class="category-item" *ngFor="let category of categoryList">
-          <ion-icon 
-            [name]="category.icon" 
-            class="category-icon"></ion-icon>
+          <ion-icon [name]="category.icon" class="category-icon"></ion-icon>
           <div class="category-value">{{ category.count }}</div>
           <div class="category-name">{{ category.name }}</div>
         </div>

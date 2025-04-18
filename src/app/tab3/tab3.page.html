@@ -11,7 +11,7 @@
           </ion-button>
         </p>
       </ion-label>
-      <ion-button slot="end">
+      <ion-button slot="end" (click)="openHelpModel()">
         <ion-icon slot="icon-only" name="help-circle-outline"></ion-icon>
       </ion-button>
       <ion-button slot="end" class="notification">
@@ -26,6 +26,19 @@
       </ion-col>
     </ion-row>
   </ion-toolbar>
+  <!--Help Modal-->
+  <ion-modal [isOpen]="helpModelStatu">
+    <ng-template>
+      <ion-button (click)="closeHelpModel()">Return</ion-button>
+      <ion-card class="help-card">
+        <ion-card-header>
+          <ion-card-title>Manage</ion-card-title>
+          <ion-card-subtitle>Home</ion-card-subtitle>
+          <ion-content></ion-content>
+        </ion-card-header>
+      </ion-card>
+    </ng-template>
+  </ion-modal>
 </ion-header>
 
 <ion-content>
@@ -128,13 +141,14 @@
               </ion-card-header>
               <form (ngSubmit)="updateItem()" class="update-form">
                 <ion-item class="form-item">
-                  <ion-label position="floating" class="form-label">Item Name</ion-label>
-                  <ion-input [(ngModel)]="checkedItem.item_name" name="item_name" required
-                    class="form-input"></ion-input>
+                  <ion-label position="floating" class="form-label">Item Name(Readonly)</ion-label>
+                  <ion-input [(ngModel)]="checkedItem.item_name" name="item_name" required class="form-input"
+                    readonly></ion-input>
                 </ion-item>
                 <ion-item class="form-item">
-                  <ion-label position="floating" class="form-label">Item ID</ion-label>
-                  <ion-input [(ngModel)]="checkedItem.item_id" name="item_id" required class="form-input"></ion-input>
+                  <ion-label position="floating" class="form-label">Item ID(Readonly)</ion-label>
+                  <ion-input [(ngModel)]="checkedItem.item_id" name="item_id" required class="form-input" type="number"
+                    readonly></ion-input>
                 </ion-item>
                 <ion-item class="form-item">
                   <ion-label position="floating" class="form-label">Category</ion-label>
@@ -208,11 +222,13 @@
                 <ion-label position="floating" class="form-label">Item Name</ion-label>
                 <ion-input [(ngModel)]="newItem.item_name" name="item_name" required class="form-input"></ion-input>
               </ion-item>
+              <!--
               <ion-item class="form-item">
                 <ion-label position="floating" class="form-label">Item ID</ion-label>
                 <ion-input [(ngModel)]="newItem.item_id" name="item_id" required class="form-input"
                   type="number"></ion-input>
               </ion-item>
+              -->
               <ion-item class="form-item">
                 <ion-label position="floating" class="form-label">Category</ion-label>
                 <ion-select [(ngModel)]="newItem.category" name="category" required class="form-select">

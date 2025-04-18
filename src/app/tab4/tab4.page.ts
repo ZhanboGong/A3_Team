@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { InventoryService } from '../services/inventory.service';
+import { Item } from '../models/item.model';
+import { AlertButton, AlertController } from '@ionic/angular';
+import { IonButton } from '@ionic/angular';
 
 @Component({
   selector: 'app-tab4',
@@ -7,10 +11,35 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./tab4.page.scss'],
 })
 export class Tab4Page implements OnInit {
-
-  constructor() { }
+  items: Item[] = [];
+  displayItems: Item[] = [];
+  helpModelStatu = false;
+  display: "featured" | "all" = "featured";
+  constructor(private inventoryService: InventoryService) { }
 
   ngOnInit() {
+    this.getItems();
+  }
+
+  getItems() {
+    this.inventoryService.getAllItems().subscribe({
+      next: (items: Item[]) => {
+        this.items = items;
+      },
+      error: (error: any) => {
+        console.error('Error fetching items:', error);
+      }
+    });
+  }
+
+  // 选择所display的item
+  displayControl() {
+    if (this.display === "featured") {
+      this.displayItems = this.items.filter(item => item.featured_item === 1);
+    }
+    else {
+      this.displayItems = this.items;
+    }
   }
 
 }

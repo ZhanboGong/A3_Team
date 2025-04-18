@@ -1,194 +1,180 @@
-// Tab1 页面 SCSS
+// ============== 通用样式 ==============
+%card-shared {
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+%base-color-scheme {
+  --background: var(--ion-color-light);
+  --border-color: var(--ion-color-medium);
+  --ion-color-base: #fff;
+  --ion-color-contrast: #000;
+  --ion-color-contrast-rgb: 0, 0, 0;
+  --ion-color-rgb: 255, 255, 255;
+  --ion-color-shade: #eee;
+  --ion-color-tint: #f5f5f5;
+}
+
+// ============== 头部样式 ==============
 ion-header {
-    box-shadow: none;
+  box-shadow: none;
 
-    ion-toolbar {
-        border-radius: 0 0 20px 20px;
+  ion-toolbar {
+    border-radius: 0 0 20px 20px;
 
-        ion-item {
-            --background: transparent;
+    ion-item {
+      --background: transparent;
 
-            ion-label {
-                font-size: var(--font-size-small);
-                color: lightgray;
-            }
+      ion-label {
+        font-size: 14px;
+        color: lightgray;
+      }
 
-            p {
-                color: white;
-                font-size: var(--font-size-title);
-                font-weight: bold;
-                display: flex;
-                align-items: center;
+      p {
+        color: white;
+        font-size: 24px;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
 
-                ion-text {
-                    padding-left: 5px;
-                }
+        ion-text { padding-left: 5px; }
+        ion-icon { font-size: 20px; }
+      }
 
-                ion-icon {
-                    font-size: var(--icon-size-small);
-                }
-            }
+      ion-button[slot="end"] {
+        --background: rgba(225, 225, 225, 0.2);
+        box-shadow: 0 4px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
 
-            // 信息和帮助按钮在页面头部
-            ion-button[slot="end"] {
-                --background: rgba(225, 225, 225, 0.2);
-                box-shadow: 0, 4px rgba(0, 0, 0, 0.1);
-                backdrop-filter: blur(10px);
-                -webkit-backdrop-filter: blur(10px);
-
-                ion-icon {
-                    font-size: var(--icon-size-medium);
-                    padding: 5px 0;
-                }
-            }
-
-            ion-button.notification {
-                margin-inline-start: 5px;
-            }
+        ion-icon {
+          font-size: 24px;
+          padding: 5px 0;
         }
+
+        &.notification {
+          margin-inline-start: 5px;
+        }
+      }
     }
+  }
 }
 
+// ============== 内容区域 ==============
 ion-content {
-    --background: var(--ion-color-light);
-    --ion-color-base: #fff;
-    --ion-color-contrast: #000;
-    --ion-color-contrast-rgb: 0, 0, 0;
-    --ion-color-rgb: 255, 255, 255;
-    --ion-color-shade: #eee;
-    --ion-color-tint: #f5f5f5;
-}
-
-ion-list {
-    --background: var(--ion-color-light);
-    --border-color: var(--ion-color-medium);
-    --ion-color-base: #fff;
-    --ion-color-contrast: #000;
-    --ion-color-contrast-rgb: 0, 0, 0;
-    --ion-color-rgb: 255, 255, 255;
-    --ion-color-shade: #eee;
-    --ion-color-tint: #f5f5f5;
-}
-
-ion-item {
-    --background: var(--ion-color-light);
-    --border-color: var(--ion-color-medium);
-    --ion-color-base: #fff;
-    --ion-color-contrast: #000;
-    --ion-color-contrast-rgb: 0, 0, 0;
-    --ion-color-rgb: 255, 255, 255;
-    --ion-color-shade: #eee;
-    --ion-color-tint: #f5f5f5;
-}
-
-// 搜索功能的样式
-ion-row {
-    display: flex;
-    align-items: center;
-
-    ion-col {
-        padding: 0;
-    }
-
-    ion-searchbar {
-        --width: 100%;
-    }
-
-    ion-button {
-        --margin-start: 5px;
-    }
-}
-
-// 介绍区域样式
-.intro-section {
-    margin-bottom: 32px;
+  @extend %base-color-scheme;
   
-    //系统介绍卡片
-    .header-card {
+  ion-list, ion-item {
+    @extend %base-color-scheme;
+  }
+}
+
+// ============== 搜索栏 ==============
+ion-row {
+  display: flex;
+  align-items: center;
+
+  ion-col { padding: 0; }
+  ion-searchbar { 
+    --width: 100%;
+    font-size: 16px;
+  }
+  ion-button { --margin-start: 5px; }
+}
+
+// ============== 介绍区域 ==============
+.intro-section {
+  margin-bottom: 32px;
+
+  .header-card {
+    @extend %card-shared;
     text-align: center;
     background: var(--ion-color-primary);
     color: white;
 
-      .main-title {
-        font-size: 32px;
-        margin-bottom: 5px;
+    .main-title {
+      font-size: 32px;
+      margin-bottom: 5px;
+    }
+
+    .description {
+      font-size: 18px;
+      margin: 24px 0;
+    }
+
+    .cta-button {
+      margin-top: 24px;
+      border-radius: 25px;
+    }
+  }
+
+  .feature-card {
+    @extend %card-shared;
+    margin-top: 24px;
+
+    ion-icon {
+      font-size: 28px;
+      margin-right: 16px;
+    }
+
+    h3 { margin-bottom: 5px; }
+    p { font-size: 14px; }
+  }
+}
+
+// ============== 统计卡片 ==============
+.stats-card {
+  @extend %card-shared;
+  margin: 16px;
+
+  ion-card-title {
+    font: 600 20px/1 var(--ion-font-family);
+    color: var(--ion-color-dark);
+  }
+
+  .core-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+
+    .stat-item {
+      padding: 16px;
+      border-radius: 12px;
+      text-align: center;
+
+      .stat-icon { font-size: 32px; }
+      .stat-value { font: 700 24px/1; }
+      .stat-label { font-size: 14px; }
+
+      &.primary {
+        background: linear-gradient(135deg, #6c5ce7, #4b3bcf);
         color: white;
       }
-  
-      .description {
-        font-size: 18px;
-        margin: 24px 0;
-      }
-  
-      .cta-button {
-        margin-top: 24px;
-        border-radius: 25px;
-      }
-    }
-  
-    //功能介绍卡片
-    .feature-card {
-      margin-top: 24px;
-  
-      ion-icon {
-        font-size: 28px;
-        margin-right: 16px;
-      }
-  
-      h3 {
-        margin-bottom: 5px;
-      }
-  
-      p {
-        font-size: 14px;
+
+      &.accent {
+        background: linear-gradient(135deg, #ff7675, #d63031);
+        color: white;
       }
     }
   }
-  
-  // 统计卡片样式
-  .stats-grid {
-    gap: 16px;
-  
-    .stat-card {
-      .stat-item {
-        padding: 16px 0;
-        
-        .stat-icon {
-          font-size: 40px;
-          margin-right: 24px;
-        }
-  
-        h2 {
-          font-size: 35px;
-        }
-  
-        p {
-          margin: 5px 0 0;
-        }
+
+  .category-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 12px;
+
+    .category-item {
+      @extend %card-shared;
+      padding: 12px;
+      text-align: center;
+
+      .category-icon { font-size: 24px; }
+      .category-value { font: 600 18px/1; }
+      .category-name { 
+        font-size: 12px;
+        color: var(--ion-color-medium);
       }
     }
   }
-  
-  ion-header {
-    ion-toolbar {
-      border-radius: 0 0 20px 20px;
-      
-      ion-item {
-        ion-label {
-          font-size: 14px;
-        }
-        
-        p {
-          font-size: 24px;
-          
-          ion-icon {
-            font-size: 20px;
-          }
-        }
-      }
-    }
-  }
-  
-  ion-searchbar {
-    font-size: 16px;
-  }
+}

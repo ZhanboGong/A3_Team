@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { InventoryService } from '../services/inventory.service';
 import { Item } from '../models/item.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tab1',
@@ -10,28 +11,42 @@ import { Item } from '../models/item.model';
 })
 export class Tab1Page implements OnInit {
   items: Item[] = [];
-  featuredCount: number = 0; // Featured 数量属性
+  featuredCount = 0;
+  categoryList = [
+    { name: 'Electronics', count: 0, icon: 'hardware-chip'},
+    { name: 'Furniture', count: 0, icon: 'bed'},
+    { name: 'Clothing', count: 0, icon: 'shirt'},
+    { name: 'Tools', count: 0, icon: 'build'},
+    { name: 'Miscellaneous', count: 0, icon: 'cube'}
+  ];
 
-  constructor(private inventoryService: InventoryService) { }
+  constructor(
+    private inventoryService: InventoryService,
+    private router: Router
+  ) {}
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.getItems();
   }
 
   getItems() {
     this.inventoryService.getAllItems().subscribe({
-      next: (items: Item[]) => {
+      next: (items) => {
         this.items = items;
-        this.featuredCount = this.calculateFeaturedCount(); // 计算Featured数量
+        this.updateStatistics();
       },
-      error: (error: any) => {
-        console.error('Error fetching items:', error);
-      }
+      error: (error) => console.error('Error:', error)
     });
   }
 
-  //计算Featured 数量
-  private calculateFeaturedCount(): number {
-    return this.items.filter(item => item.featured_item === 1).length;
+  private updateStatistics() {
+    this.featuredCount = this.items.filter(item => item.featured_item === 1).length;
+    this.categoryList.forEach(category => {
+      category.count = this.items.filter(item => item.category === category.name).length;
+    });
+  }
+
+  navigateToManage() {
+    this.router.navigateByUrl('/tabs/tab3');
   }
 }

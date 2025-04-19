@@ -17,16 +17,17 @@
       <ion-button slot="end" (click)="openHelpModel()">
         <ion-icon slot="icon-only" name="help-circle-outline"></ion-icon>
       </ion-button>
-      <ion-button slot="end" class="notification">
-        <ion-icon slot="icon-only" name="information-circle-outline"></ion-icon>
-      </ion-button>
     </ion-item>
     <!--The Tab's Search bar, located in the header-->
-    <ion-row>
-      <ion-col size="12">
-        <ion-searchbar debounce="800" color="light" #searchInput inputmode="search" class="srchBar" mode="ios"
-          [(ngModel)]="searchTerm" (ionChange)="searchItems()" placeholder="Search">
-        </ion-searchbar>
+    <ion-row class="search-row">
+      <ion-col  class="search-col">
+        <ion-searchbar debounce="800" color="light" #searchInput inputmode="search" class="srchBar" 
+        mode="ios"[(ngModel)]="searchTerm" (ionChange)="searchItems()" placeholder="Search"></ion-searchbar>
+      </ion-col>
+      <ion-col  class="btn-col">
+        <ion-button class="search-btn"fill="clear" color="light" mode="ios" (click)="searchItems()" 
+        [disabled]="!searchTerm"><ion-icon slot="icon-only" name="search"></ion-icon>
+        </ion-button>
       </ion-col>
     </ion-row>
   </ion-toolbar>

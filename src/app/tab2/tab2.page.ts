@@ -20,6 +20,9 @@ export class Tab2Page implements OnInit {
     this.getItems();
   }
 
+  /**
+   * Get all the item information from the back-end API and assign it to the items and allItems arrays
+   */
   getItems() {
     this.inventoryService.getAllItems().subscribe({
       next: (items: Item[]) => {
@@ -32,6 +35,9 @@ export class Tab2Page implements OnInit {
     });
   }
 
+  /**
+   * 
+   */
   searchItems() {
     if (this.searchTerm) {
       this.inventoryService.getItemByName(this.searchTerm).subscribe({
@@ -56,12 +62,17 @@ export class Tab2Page implements OnInit {
     }
   }
 
-  // modal
+  /**
+   * modal control: Set help modal's display state to true(open)
+   */
   openHelpModel() {
     this.helpModelStatu = true;
     console.log("Manage Page Help open");
   }
 
+  /**
+   * modal control: Set help modal's display state to false(close)
+   */
   closeHelpModel() {
     this.helpModelStatu = false;
     console.log("Manage Page Help close");

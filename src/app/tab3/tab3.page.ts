@@ -23,13 +23,13 @@ export class Tab3Page implements OnInit {
     featured_item: 0,
     special_note: ''
   };
-  // 被选中的进行增删操作的item
+  // The checkeded item to add or delete
   checkedItem: Item | null = null;
-  // 被修改前的选中的Item
+  // The checkeded Item before the modification
   lastItem: Item | null = null;
-  // 视图选项
+  // Side Menu view options
   sidebarView: 'overview' | 'modify' | 'add' = 'overview';
-  // 侧边Menu的状态
+  // The state of the side Menu
   sideMenuStatu = false;
   // update modal statu
   updateModelStatu = false;
@@ -38,9 +38,13 @@ export class Tab3Page implements OnInit {
 
   constructor(private inventoryService: InventoryService, private alertController: AlertController) { }
   ngOnInit(): void {
+    // Get all the item information when the tab page is initialized
     this.getItems();
   }
 
+  /**
+   * Get all the item information from the back-end API and assign it to the items and allItems arrays
+   */
   getItems() {
     this.inventoryService.getAllItems().subscribe({
       next: (items: Item[]) => {
@@ -52,6 +56,12 @@ export class Tab3Page implements OnInit {
     });
   }
 
+  /**
+   * Before submitting the Add, the data input in the Add form should be verified.
+   * If the verification fails, the method validationMessage in the Ts file should be called to pop up an asynchronous verification message popup window and display the verification error information to the user. 
+   * If the verification succeeds, the new item is added and newItem is initialized
+   * @returns 
+   */
   addNewItem() {
     const validationMessage = this.inventoryService.dataValidation(this.newItem, this.items);
     if (validationMessage) {
@@ -79,14 +89,22 @@ export class Tab3Page implements OnInit {
     });
   }
 
+  /**
+   * The selected Item is assigned to checkedItem for rendering on top of the update form. 
+   * lastItem keeps track of the checkedItem before it was modified. 
+   * Open update modal(update form) after assignment
+   * @param item  The Item that was clicked on the Update button (selected for update)
+   */
   selectItem(item: Item) {
     this.checkedItem = { ...item };
     this.lastItem = this.checkedItem;
     this.openUpdateModel();
-
   }
 
-  // 这里需要添加删除提示,同时不能删除Laptop
+  /**
+   * Look for the item by name and delete it
+   * @param name The name of the Item to remove
+   */
   deleteItem(name: string) {
     this.inventoryService.deleteItem(name).subscribe({
       next: () => {
@@ -98,7 +116,10 @@ export class Tab3Page implements OnInit {
     });
   }
 
-  // 这里可能有一些bug，需要test
+  /**
+   * 
+   * @returns 
+   */
   updateItem() {
     if (this.checkedItem && this.lastItem) {
       const updateMessage = this.inventoryService.dataValidation(this.checkedItem, this.items);
@@ -129,6 +150,9 @@ export class Tab3Page implements OnInit {
     }
   }
 
+  /**
+   * Get the ion-menu element from the page and open it, updating the current Menu state (sideMenuStatu) to true
+   */
   openMenu() {
     const menu = document.querySelector('ion-menu');
     if (menu) {
@@ -137,6 +161,9 @@ export class Tab3Page implements OnInit {
     }
   }
 
+  /**
+   * Gets the ion-menu element from the page and closes it, updating the current Menu state (sideMenuStatu) to false
+   */
   closeMenu() {
     const menu = document.querySelector('ion-menu');
     if (menu) {
@@ -145,7 +172,10 @@ export class Tab3Page implements OnInit {
     }
   }
 
-  // 用于切换该页面的视图
+  /**
+   * Toggle the current view state.If you change to overview or modify, which needs to display the item, import the item again
+   * @param selectedView View state of the current page
+   */
   switchView(selectedView: 'overview' | 'modify' | 'add') {
     this.sidebarView = selectedView;
     if (selectedView === 'overview' || selectedView === 'modify') {
@@ -153,7 +183,9 @@ export class Tab3Page implements OnInit {
     }
   }
 
-  // 模态窗口
+  /**
+   * modal control: Set update modal's display state to true(open)
+   */
   openUpdateModel() {
     if (this.checkedItem) {
       this.updateModelStatu = true;
@@ -161,26 +193,40 @@ export class Tab3Page implements OnInit {
     console.log(this.checkedItem);
   }
 
+  /**
+   * modal control: Set update modal's display state to false(close)
+   */
   closeUpdateModel() {
     this.checkedItem = null;
     this.updateModelStatu = false;
   }
 
+  /**
+   * modal control: Set help modal's display state to true(open)
+   */
   openHelpModel() {
     this.helpModelStatu = true;
     console.log("Manage Page Help open");
   }
 
+  /**
+   * modal control: Set help modal's display state to false(close)
+   */
   closeHelpModel() {
     this.helpModelStatu = false;
     console.log("Manage Page Help close");
   }
 
-  // 删除弹窗提示
+  /**
+   * Delete Confirmation popup
+   * @param name The name of the Item that should be deleted
+   */
   async deletePrompt(name: string) {
+    // Creating a popover
     const alert = await this.alertController.create({
-      header: "Deletion Confirmation",
-      message: "Make sure to delete item " + name,
+      header: "Deletion Confirmation",// popup header
+      message: "Make sure to delete item " + name,// popup message
+      // button: Cancel & Conform(deleteItem())
       buttons: [
         {
           text: "Cancel",
@@ -202,11 +248,15 @@ export class Tab3Page implements OnInit {
     await alert.present();
   }
 
-  // 提示弹窗
+  /**
+   * validation message popup
+   * @param message A validation alert returned after validation
+   */
   async validationMessage(message: string) {
+    // Create a validation message popup
     const alert = await this.alertController.create({
-      header: "Validation Message",
-      message: message,
+      header: "Validation Message",// header
+      message: message,// validation message
       buttons: [
         {
           text: "Close",

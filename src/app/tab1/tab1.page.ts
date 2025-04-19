@@ -51,7 +51,9 @@ export class Tab1Page implements OnInit {
     this.router.navigateByUrl('/tabs/tab3');
   }
 
-  // modal
+  /**
+    * modal control: Set help modal's display state to true(open)
+    */
   openHelpModel() {
     this.helpModelStatu = true;
     console.log("Manage Page Help open");

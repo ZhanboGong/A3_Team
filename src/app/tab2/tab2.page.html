@@ -1,4 +1,4 @@
-<!-- src/app/tabs/tab1/tab1.page.html -->
+<!--Search Tab-->
 <ion-header>
   <ion-toolbar color="primary">
     <ion-item lines="none">
@@ -12,6 +12,7 @@
           </ion-button>
         </p>
       </ion-label>
+      <!--The Help and Information small buttons in the Header are used to open the Help Modal and Information Modal-->
       <ion-button slot="end" (click)="openHelpModel()">
         <ion-icon slot="icon-only" name="help-circle-outline"></ion-icon>
       </ion-button>
@@ -19,6 +20,7 @@
         <ion-icon slot="icon-only" name="information-circle-outline"></ion-icon>
       </ion-button>
     </ion-item>
+    <!--The Tab's Search bar, located in the header-->
     <ion-row>
       <ion-col size="12">
         <ion-searchbar debounce="800" color="light" #searchInput inputmode="search" class="srchBar" mode="ios"
@@ -27,34 +29,33 @@
       </ion-col>
     </ion-row>
   </ion-toolbar>
+  <!--Help Modal-->
   <ion-modal [isOpen]="helpModelStatu">
     <ng-template>
+      <!--Return Button-->
       <ion-toolbar color="primary">
         <ion-button (click)="closeHelpModel()">
           <ion-icon name="return-down-back-outline">Return</ion-icon>
         </ion-button>
       </ion-toolbar>
-
       <ion-content>
         <ion-header>
           <ion-toolbar color="primary">
             <ion-title>Search Help Page</ion-title>
           </ion-toolbar>
-        </ion-header>
-
+        </ion-header>'
+        <!--The Help content of the tab page-->
         <ion-card>
           <ion-card-header>
             <ion-card-title>USAGE</ion-card-title>
           </ion-card-header>
           <ion-card-content>
             <p>Here is how to use this page:</p>
-            <p><strong>1. Book Management Button</strong></p>
-            <p>Go to the Book-Management page</p>
-            <p><strong>2. Search Button</strong></p>
-            <p>Go to the Search page</p>
-            <p><strong>3. Privacy and Security Button</strong></p>
-            <p>Go to the privacy and security page</p>
-            <p><strong>4. Help Button</strong></p>
+            <p><strong>1. Search Bar</strong></p>
+            <p>Click on the search bar and enter the name of the item you want to search for</p>
+            <p><strong>2. Navigation</strong></p>
+            <p>Click on the navigation bar at the bottom of the page to go to the page you want</p>
+            <p><strong>3. Help Button</strong></p>
             <p>Go to the Help page, The Help content is different for each page</p>
           </ion-card-content>
         </ion-card>
@@ -106,6 +107,7 @@
   </ion-modal>
 </ion-header>
 
+<!--In the TS code, delete the search terms in the search bar and print the filtered items-->
 <ion-content>
   <ion-list>
     <div>

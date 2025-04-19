@@ -52,13 +52,28 @@
           </ion-card-header>
           <ion-card-content>
             <p>Here is how to use this page:</p>
-            <p><strong>1. Book Management Button</strong></p>
-            <p>Go to the Book-Management page</p>
-            <p><strong>2. Search Button</strong></p>
-            <p>Go to the Search page</p>
-            <p><strong>3. Privacy and Security Button</strong></p>
-            <p>Go to the privacy and security page</p>
-            <p><strong>4. Help Button</strong></p>
+            <p><strong>1. Side Menu Button</strong></p>
+            <p>Open and close the side menu</p>
+            <p><strong>2. Overview Button(side menu)</strong></p>
+            <p>Display all current items and be used for the jump after a new item is successfully added</p>
+            <p><strong>3. Modify Button(side menu)</strong></p>
+            <p>Render the interface used for updating and deleting items</p>
+            <p><strong>4. Add Button(side menu)</strong></p>
+            <p>Render the interface used for adding new items</p>
+            <p><strong>5. Update Button(Modify)</strong></p>
+            <p>Modify Interface:The Update Modal(Form) used to trigger the checked item</p>
+            <p>Modify Interface->Update Form: Used for submitting the updated item</p>
+            <p><strong>6. Delete Button(Modify)</strong></p>
+            <p>Used to delete the checked item</p>
+            <p><strong>7. Add Button(Add)</strong></p>
+            <p>Add a new item</p>
+            <p><strong>8. PopUp Window</strong></p>
+            <p>When a data verification error occurs, an item is added successfully, or an item is selected to be
+              deleted, a
+              corresponding pop-up window will appear to prompt the user</p>
+            <p><strong>9. Navigation</strong></p>
+            <p>Click on the navigation bar at the bottom of the page to go to the page you want</p>
+            <p><strong>10. Help Button</strong></p>
             <p>Go to the Help page, The Help content is different for each page</p>
           </ion-card-content>
         </ion-card>
@@ -71,22 +86,31 @@
             <ion-list>
               <ion-item>
                 <ion-label>
-                  <h3>Problem 1: Data cannot be synchronized if two web pages are opened at the same time</h3>
-                  <p>Since this page is just a normal Angular project that uses the ngModel for data transfer and arrays
-                    for
-                    data storage instead of json for data loading, this is the case when, for example, book-management
-                    and
-                    search pages are open together. What you need to do is to use the button to navigate to the page,
-                    rather
-                    than opening a new page or using /blank.</p>
+                  <h3>Problem 1: There are many items with incorrect data in the Overview interface</h3>
+                  <p>Because this app uses a shared database, every student can manage items on it. However, the data
+                    verification of some
+                    students may have problems, so items with incorrect data may appear</p>
                 </ion-label>
               </ion-item>
               <ion-item>
                 <ion-label>
-                  <h3>Problem 2: The data does not load or the web page is stuck</h3>
-                  <p>This is probably because angular material is used and you need to restart the page using ng serve
-                    --open
+                  <h3>Problem 2: Why can't the Item ID be entered in the Add interface?</h3>
+                  <p>Because the database ID of this app is auto-incrementing, even if users fill in the ID themselves,
+                    it will be
+                    overwritten as auto-incrementing.
                   </p>
+                </ion-label>
+              </ion-item>
+              <ion-item>
+                <ion-label>
+                  <h3>Problem 3: Why can't the name of Item Laptop be modified and why can't this item be deleted?</h3>
+                  <p>Because some administrative permissions of this item have been locked.</p>
+                </ion-label>
+              </ion-item>
+              <ion-item>
+                <ion-label>
+                  <h3>Problem 4: Why are the ID and Name in the update form locked?</h3>
+                  <p>It's also a matter of permission.</p>
                 </ion-label>
               </ion-item>
             </ion-list>
@@ -275,8 +299,6 @@
                       </ion-col>
                     </ion-row>
                   </ion-grid>
-
-
                 </div>
               </form>
             </ion-card>

@@ -71,6 +71,7 @@ export class Tab3Page implements OnInit {
     this.inventoryService.addRecord(this.newItem).subscribe({
       next: () => {
         this.getItems();
+        this.addPrompt(this.newItem.item_name);
         this.newItem = {
           item_id: 0,
           item_name: '',
@@ -269,4 +270,31 @@ export class Tab3Page implements OnInit {
     await alert.present();
   }
 
+  /**
+   * Add Successfully pop-up
+   * @param name The name of the item that was successfully added
+   */
+  async addPrompt(name: string) {
+    const alert = await this.alertController.create({
+      header: "Successfully Added",// header
+      message: name + " has been successfully added.", // "Add Successfully" message
+      buttons: [
+        {
+          text: "OK",
+          role: "ok",
+          cssClass: "secondary",
+          handler: () => {
+            alert.dismiss();
+          }
+        },
+        {
+          text: 'Overview',
+          handler: () => {
+            this.switchView("overview");
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
 }

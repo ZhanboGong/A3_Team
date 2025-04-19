@@ -159,7 +159,7 @@
       <h1 align="center" *ngIf="sidebarView === 'add'">Add New Item</h1>
     </ion-header>
 
-    <!--Overview 视图-->
+    <!--Overview-->
     <ion-content>
       <div *ngIf="sidebarView === 'overview'">
         <ion-card *ngFor="let item of items">
@@ -187,7 +187,7 @@
         </ion-card>
       </div>
 
-      <!--修改视图-->
+      <!--Modify-->
       <div *ngIf="sidebarView === 'modify'">
         <ion-card *ngFor="let item of items">
           <ion-card-header>
@@ -223,7 +223,7 @@
             </ion-grid>
           </ion-card-content>
         </ion-card>
-        <!--模态窗口，用于Update Form-->
+        <!--Update Modal(Update Form)-->
         <ion-modal [isOpen]="updateModelStatu">
           <ng-template>
             <ion-card *ngIf="checkedItem" class="update-form-card">
@@ -302,6 +302,7 @@
           </ng-template>
         </ion-modal>
       </div>
+      <!--Add Form-->
       <div *ngIf="sidebarView === 'add'">
         <ion-card>
           <ion-card-header>Add Form</ion-card-header>
@@ -311,13 +312,6 @@
                 <ion-label position="floating" class="form-label">Item Name</ion-label>
                 <ion-input [(ngModel)]="newItem.item_name" name="item_name" required class="form-input"></ion-input>
               </ion-item>
-              <!--
-              <ion-item class="form-item">
-                <ion-label position="floating" class="form-label">Item ID</ion-label>
-                <ion-input [(ngModel)]="newItem.item_id" name="item_id" required class="form-input"
-                  type="number"></ion-input>
-              </ion-item>
-              -->
               <ion-item class="form-item">
                 <ion-label position="floating" class="form-label">Category</ion-label>
                 <ion-select [(ngModel)]="newItem.category" name="category" required class="form-select">
@@ -366,7 +360,6 @@
             </form>
           </ion-card-content>
         </ion-card>
-
       </div>
     </ion-content>
   </div>

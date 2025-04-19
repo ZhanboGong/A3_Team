@@ -14,27 +14,47 @@ export class InventoryService {
     }
 
 
-    // Gets all records in the url
+    /**
+     * Gets all records from the back-end API
+     * @returns 
+     */
     getAllItems(): Observable<Item[]> {
         return this.http.get<Item[]>(this.url);
     }
 
-    // Look for records by name
+    /**
+     * Look for records by name
+     * @param name The name of the item that needs to be getted
+     * @returns 
+     */
     getItemByName(name: string): Observable<Item[]> {
         return this.http.get<Item[]>(this.url + name);
     }
 
-    // Add new Item
+    /**
+     * Add new Item
+     * @param item The name of the item that needs to be added
+     * @returns 
+     */
     addRecord(item: Item): Observable<Item> {
         return this.http.post<Item>(this.url, item);
     }
 
-    // Through name update item
+    /**
+     * Through name update item
+     * @param name The name of the item that needs to be updated
+     * @param item The updated item
+     * @returns 
+     */
     updateItem(name: string, item: Item): Observable<Item> {
         return this.http.put<Item>(`${this.url}${name}`, item);
     }
 
-    // Through name delete item
+    /**
+     * Through name delete item
+     * @param name The name of the item that needs to be deleted
+     * @returns 
+     */
     deleteItem(name: string): Observable<any> {
         return this.http.delete(`${this.url}${name}`);
     }

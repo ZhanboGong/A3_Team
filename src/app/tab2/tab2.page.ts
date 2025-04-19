@@ -11,12 +11,15 @@ import { Item } from '../models/item.model';
 export class Tab2Page implements OnInit {
   items: Item[] = [];
   allItems: Item[] = [];
+  // Search terms entered in the search bar
   searchTerm: any;
+  // Used to control the Help Modal display state
   helpModelStatu = false;
 
   constructor(private inventoryService: InventoryService) { }
 
   ngOnInit() {
+    // Get all the item information when the tab page is initialized
     this.getItems();
   }
 

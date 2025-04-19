@@ -16,9 +16,6 @@
       <ion-button slot="end" (click)="openHelpModel()">
         <ion-icon slot="icon-only" name="help-circle-outline"></ion-icon>
       </ion-button>
-      <ion-button slot="end" class="notification">
-        <ion-icon slot="icon-only" name="information-circle-outline"></ion-icon>
-      </ion-button>
     </ion-item>
     <!--The button used to control the Menu on the left-->
     <ion-row>
@@ -157,9 +154,9 @@
 
   <div id="main-content" class="ion-page">
     <ion-header>
-      <h1 *ngIf="sidebarView === 'overview'">Overview</h1>
-      <h1 *ngIf="sidebarView === 'modify'">Modify Items</h1>
-      <h1 *ngIf="sidebarView === 'add'">Add New Item</h1>
+      <h1 align="center" *ngIf="sidebarView === 'overview'">Overview</h1>
+      <h1 align="center" *ngIf="sidebarView === 'modify'">Modify Items</h1>
+      <h1 align="center" *ngIf="sidebarView === 'add'">Add New Item</h1>
     </ion-header>
 
     <!--Overview 视图-->

@@ -29,14 +29,79 @@
   <!--Help Modal-->
   <ion-modal [isOpen]="helpModelStatu">
     <ng-template>
-      <ion-button (click)="closeHelpModel()">Return</ion-button>
-      <ion-card class="help-card">
-        <ion-card-header>
-          <ion-card-title>Manage</ion-card-title>
-          <ion-card-subtitle>Home</ion-card-subtitle>
-          <ion-content></ion-content>
-        </ion-card-header>
-      </ion-card>
+      <ion-toolbar color="primary">
+        <ion-button (click)="closeHelpModel()">
+          <ion-icon name="return-down-back-outline">Return</ion-icon>
+        </ion-button>
+      </ion-toolbar>
+
+      <ion-content>
+        <ion-header>
+          <ion-toolbar color="primary">
+            <ion-title>Manage Help Page</ion-title>
+          </ion-toolbar>
+        </ion-header>
+
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>USAGE</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <p>Here is how to use this page:</p>
+            <p><strong>1. Book Management Button</strong></p>
+            <p>Go to the Book-Management page</p>
+            <p><strong>2. Search Button</strong></p>
+            <p>Go to the Search page</p>
+            <p><strong>3. Privacy and Security Button</strong></p>
+            <p>Go to the privacy and security page</p>
+            <p><strong>4. Help Button</strong></p>
+            <p>Go to the Help page, The Help content is different for each page</p>
+          </ion-card-content>
+        </ion-card>
+
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>Problem and Solving</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-list>
+              <ion-item>
+                <ion-label>
+                  <h3>Problem 1: Data cannot be synchronized if two web pages are opened at the same time</h3>
+                  <p>Since this page is just a normal Angular project that uses the ngModel for data transfer and arrays
+                    for
+                    data storage instead of json for data loading, this is the case when, for example, book-management
+                    and
+                    search pages are open together. What you need to do is to use the button to navigate to the page,
+                    rather
+                    than opening a new page or using /blank.</p>
+                </ion-label>
+              </ion-item>
+              <ion-item>
+                <ion-label>
+                  <h3>Problem 2: The data does not load or the web page is stuck</h3>
+                  <p>This is probably because angular material is used and you need to restart the page using ng serve
+                    --open
+                  </p>
+                </ion-label>
+              </ion-item>
+            </ion-list>
+          </ion-card-content>
+        </ion-card>
+
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>Contact</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <p>If you think there are still problems with this page, you can contact me through the following ways:</p>
+            <p><strong>WeChat</strong></p>
+            <p>wxid_639m9rswbdmi22</p>
+            <p><strong>Phone:</strong></p>
+            <p>+86 18179025638</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-content>
     </ng-template>
   </ion-modal>
 </ion-header>

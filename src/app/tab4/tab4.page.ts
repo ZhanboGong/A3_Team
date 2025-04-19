@@ -25,6 +25,7 @@ export class Tab4Page implements OnInit {
     this.inventoryService.getAllItems().subscribe({
       next: (items: Item[]) => {
         this.items = items;
+        this.displayControl();
       },
       error: (error: any) => {
         console.error('Error fetching items:', error);
@@ -40,6 +41,16 @@ export class Tab4Page implements OnInit {
     else {
       this.displayItems = this.items;
     }
+  }
+
+  openHelpModel() {
+    this.helpModelStatu = true;
+    console.log("Manage Page Help open");
+  }
+
+  closeHelpModel() {
+    this.helpModelStatu = false;
+    console.log("Manage Page Help close");
   }
 
 }

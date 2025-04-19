@@ -1,0 +1,137 @@
+ion-header {
+    box-shadow: none;
+
+    ion-toolbar {
+        border-radius: 0 0 20px 20px;
+
+        ion-item {
+            --background: transparent;
+
+            ion-label {
+                font-size: var(--font-size-small);
+                color: lightgray;
+            }
+
+            p {
+                color: white;
+                font-size: var(--font-size-title);
+                font-weight: bold;
+                display: flex;
+                align-items: center;
+
+                ion-text {
+                    padding-left: 5px;
+                }
+
+                ion-icon {
+                    font-size: var(--icon-size-small);
+                }
+            }
+
+            // 信息和帮助按钮在页面头部
+            ion-button[slot="end"] {
+                --background: rgba(225, 225, 225, 0.2);
+                box-shadow: 0, 4px rgba(0, 0, 0, 0.1);
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
+
+                ion-icon {
+                    font-size: var(--icon-size-medium);
+                    padding: 5px 0;
+                }
+            }
+
+            ion-button.notification {
+                margin-inline-start: 5px;
+            }
+        }
+    }
+}
+
+ion-content {
+    --background: var(--ion-color-light);
+    --ion-color-base: #fff;
+    --ion-color-contrast: #000;
+    --ion-color-contrast-rgb: 0, 0, 0;
+    --ion-color-rgb: 255, 255, 255;
+    --ion-color-shade: #eee;
+    --ion-color-tint: #f5f5f5;
+}
+
+ion-list {
+    --background: var(--ion-color-light);
+    --border-color: var(--ion-color-medium);
+    --ion-color-base: #fff;
+    --ion-color-contrast: #000;
+    --ion-color-contrast-rgb: 0, 0, 0;
+    --ion-color-rgb: 255, 255, 255;
+    --ion-color-shade: #eee;
+    --ion-color-tint: #f5f5f5;
+}
+
+ion-item {
+    --background: var(--ion-color-light);
+    --border-color: var(--ion-color-medium);
+    --ion-color-base: #fff;
+    --ion-color-contrast: #000;
+    --ion-color-contrast-rgb: 0, 0, 0;
+    --ion-color-rgb: 255, 255, 255;
+    --ion-color-shade: #eee;
+    --ion-color-tint: #f5f5f5;
+}
+
+// 搜索功能的样式
+ion-row {
+    display: flex;
+    align-items: center;
+
+    ion-col {
+        padding: 0;
+    }
+
+    ion-searchbar {
+        --width: 100%;
+    }
+
+    ion-button {
+        --margin-start: 5px;
+    }
+
+    ion-segment {
+        --background: transparent;
+        --border-radius: 20px;
+        --button-color: white;
+        --button-color-active: white;
+        --button-focus: white;
+        --button-hover: white;
+        --button-active-background: rgba(255, 255, 255, 0.2);
+    }
+
+    ion-segment-button {
+        --indicator-color: white;
+    }
+}
+
+ion-card-content {
+    .card-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 10px;
+    }
+
+    .left-card {
+        flex: 1;
+    }
+
+    .right-card {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+    }
+
+    ion-icon {
+        font-size: 24px;
+        cursor: pointer;
+    }
+}

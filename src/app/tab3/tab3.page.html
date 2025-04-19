@@ -3,6 +3,7 @@
     <ion-item lines="none">
       <ion-label>
         Item Management
+        <!--The Logo and Page Name on the upper left side of the header-->
         <p>
           <ion-icon name="logo-angular"></ion-icon>
           <ion-text>Manage</ion-text>
@@ -11,6 +12,7 @@
           </ion-button>
         </p>
       </ion-label>
+      <!--The Help and Information small buttons in the Header are used to open the Help Modal and Information Modal-->
       <ion-button slot="end" (click)="openHelpModel()">
         <ion-icon slot="icon-only" name="help-circle-outline"></ion-icon>
       </ion-button>
@@ -18,6 +20,7 @@
         <ion-icon slot="icon-only" name="information-circle-outline"></ion-icon>
       </ion-button>
     </ion-item>
+    <!--The button used to control the Menu on the left-->
     <ion-row>
       <ion-col size="12">
         <ion-button (click)="sideMenuStatu? closeMenu() : openMenu()">
@@ -29,19 +32,20 @@
   <!--Help Modal-->
   <ion-modal [isOpen]="helpModelStatu">
     <ng-template>
+      <!--Return Button-->
       <ion-toolbar color="primary">
         <ion-button (click)="closeHelpModel()">
           <ion-icon name="return-down-back-outline">Return</ion-icon>
         </ion-button>
       </ion-toolbar>
-
       <ion-content>
         <ion-header>
           <ion-toolbar color="primary">
             <ion-title>Manage Help Page</ion-title>
           </ion-toolbar>
         </ion-header>
-
+        <!--The Help content of the tab page-->
+        <!--Page Usage-->
         <ion-card>
           <ion-card-header>
             <ion-card-title>USAGE</ion-card-title>
@@ -58,7 +62,7 @@
             <p>Go to the Help page, The Help content is different for each page</p>
           </ion-card-content>
         </ion-card>
-
+        <!--Page Problem and Solving-->
         <ion-card>
           <ion-card-header>
             <ion-card-title>Problem and Solving</ion-card-title>
@@ -88,7 +92,7 @@
             </ion-list>
           </ion-card-content>
         </ion-card>
-
+        <!--Contact information of the person in charge-->
         <ion-card>
           <ion-card-header>
             <ion-card-title>Contact</ion-card-title>
@@ -107,6 +111,7 @@
 </ion-header>
 
 <ion-content>
+  <!---->
   <ion-menu side="start" contentId="main-content" swipeGesture="false">
     <ion-content>
       <ion-list>

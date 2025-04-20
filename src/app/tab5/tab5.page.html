@@ -1,13 +1,233 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>tab5</ion-title>
+<!--Privacy Tab-->
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-item lines="none">
+      <ion-label>
+        Item Management
+        <!--The Logo and Page Name on the upper left side of the header-->
+        <p>
+          <ion-icon name="logo-angular"></ion-icon>
+          <ion-text>Privacy</ion-text>
+          <ion-button fill="clear" color="light">
+            <ion-icon slot="icon-only" name="chevron-down-outline"></ion-icon>
+          </ion-button>
+        </p>
+      </ion-label>
+      <!--The Help and Information small buttons in the Header are used to open the Help Modal and Information Modal-->
+      <ion-button slot="end" (click)="openHelpModel()">
+        <ion-icon slot="icon-only" name="help-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-item>
   </ion-toolbar>
+  
+  <!--help modal-->
+  <ion-modal [isOpen]="helpModelStatus">
+    <ng-template>
+      <ion-toolbar color="primary">
+        <ion-button (click)="closeHelpModel()">
+          <ion-icon name="return-down-back-outline">Return</ion-icon>
+        </ion-button>
+      </ion-toolbar>
+
+      <ion-content>
+        <ion-header>
+          <ion-toolbar color="primary">
+            <ion-title>Privacy Page Help</ion-title>
+          </ion-toolbar>
+        </ion-header>
+
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>USAGE</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <p>Here is how to use this page:</p>
+            <p><strong>1. Privacy Sections</strong></p>
+            <p>Click on any section to expand and read detailed information about our privacy policies</p>
+            <p><strong>2. Return to Home</strong></p>
+            <p>Use the button at the bottom to return to the home page</p>
+            <p><strong>3. Navigation</strong></p>
+            <p>Click on the navigation bar at the bottom of the page to go to the page you want</p>
+            <p><strong>4. Help Button</strong></p>
+            <p>Go to the Help page, The Help content is different for each page</p>
+          </ion-card-content>
+        </ion-card>
+
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>Problem and Solving</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-list>
+              <ion-item>
+                <ion-label>
+                  <h3>Problem 1: Privacy policy content not displaying correctly</h3>
+                  <p>If any section is not expanding properly, try refreshing the page or restart the application</p>
+                </ion-label>
+              </ion-item>
+              <ion-item>
+                <ion-label>
+                  <h3>Problem 2: Need additional privacy information</h3>
+                  <p>For any specific privacy concerns not addressed in our policy, please contact our support team</p>
+                </ion-label>
+              </ion-item>
+            </ion-list>
+          </ion-card-content>
+        </ion-card>
+
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>Contact</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <p>If you think there are still problems with this page, you can contact me through the following ways:</p>
+            <p><strong>WeChat</strong></p>
+            <p>wxid_639m9rswbdmi22</p>
+            <p><strong>Phone:</strong></p>
+            <p>+86 18179025638</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">tab5</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <!-- Privacy Introduction -->
+  <div class="intro-section">
+    <ion-card class="header-card">
+      <ion-card-header>
+        <ion-card-title class="main-title">
+          Privacy Policy
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p class="description">
+          This privacy policy outlines how we collect, use, store, and protect your personal information.
+        </p>
+        <p class="last-updated">
+          Last Updated: {{ lastUpdated }}
+        </p>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <!-- Privacy Policy Sections -->
+  <ion-card class="policy-card">
+    <ion-card-header>
+      <ion-card-title>Our Privacy Commitments</ion-card-title>
+    </ion-card-header>
+    
+    <ion-card-content>
+      <p class="policy-intro">
+        We value your privacy and are committed to protecting your personal information. Please read this policy carefully to understand our practices regarding your data.
+      </p>
+      
+      <!-- Policy Accordion -->
+      <ion-list class="policy-list">
+        <div *ngFor="let policy of privacyPolicies; let i = index">
+          <ion-item (click)="toggleSection(i)" button detail="false" class="policy-item">
+            <ion-icon [name]="policy.icon" slot="start" class="policy-icon"></ion-icon>
+            <ion-label>
+              <h2>{{ policy.title }}</h2>
+            </ion-label>
+            <ion-icon slot="end" [name]="policy.expanded ? 'chevron-up' : 'chevron-down'"></ion-icon>
+          </ion-item>
+        
+          <!-- Policy Content (Conditionally Displayed) -->
+          <div *ngIf="policy.expanded" class="policy-content">
+            <div *ngIf="i === 0">
+              <h3>Information Collection</h3>
+              <p>We collect the following types of information:</p>
+              <ul>
+                <li>Personal information you provide (name, email, address)</li>
+                <li>Usage data (how you interact with our application)</li>
+                <li>Device information (IP address, browser type, operating system)</li>
+                <li>Cookies and similar tracking technologies</li>
+              </ul>
+            </div>
+
+            <div *ngIf="i === 1">
+              <h3>Data Usage</h3>
+              <p>We use your information to:</p>
+              <ul>
+                <li>Provide and maintain our services</li>
+                <li>Improve and personalize user experience</li>
+                <li>Analyze usage patterns and trends</li>
+                <li>Communicate with you about updates or changes</li>
+                <li>Detect and prevent fraudulent activities</li>
+              </ul>
+            </div>
+
+            <div *ngIf="i === 2">
+              <h3>Data Storage</h3>
+              <p>Your information is stored:</p>
+              <ul>
+                <li>On secure servers with industry-standard encryption</li>
+                <li>For as long as necessary to provide our services</li>
+                <li>With regular security audits and updates</li>
+              </ul>
+              <p>We implement appropriate technical and organizational measures to protect your data against unauthorized access or disclosure.</p>
+            </div>
+
+            <div *ngIf="i === 3">
+              <h3>Third-Party Sharing</h3>
+              <p>We may share your information with:</p>
+              <ul>
+                <li>Service providers who help us operate our business</li>
+                <li>Legal authorities when required by law</li>
+                <li>Business partners with your explicit consent</li>
+              </ul>
+              <p>We do not sell your personal information to third parties.</p>
+            </div>
+          
+            <div *ngIf="i === 4">
+              <h3>User Rights</h3>
+              <p>You have the right to:</p>
+              <ul>
+                <li>Access your personal information</li>
+                <li>Correct inaccurate data</li>
+                <li>Delete your information (right to be forgotten)</li>
+                <li>Object to certain processing activities</li>
+                <li>Data portability (receive your data in a structured format)</li>
+                <li>Withdraw consent at any time</li>
+              </ul>
+              <p>To exercise these rights, please contact our privacy team using the information provided at the bottom of this page.</p>
+            </div>
+          </div>
+        </div>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+  
+  <!-- Contact Information -->
+  <ion-card class="contact-card">
+    <ion-card-header>
+      <ion-card-title>Privacy Contact</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>For any privacy-related questions or concerns, please contact:</p>
+      <div class="contact-info">
+        <ion-item lines="none">
+          <ion-icon name="mail" slot="start"></ion-icon>
+          <ion-label>80936650&#64;qq.com</ion-label>
+        </ion-item>
+        <ion-item lines="none">
+          <ion-icon name="call" slot="start"></ion-icon>
+          <ion-label>+86 15268493799</ion-label>
+        </ion-item>
+        <ion-item lines="none">
+          <ion-icon name="location" slot="start"></ion-icon>
+          <ion-label>North 14, GXUST, Liuzhou, Guangxi, China</ion-label>
+        </ion-item>
+      </div>
+    </ion-card-content>
+  </ion-card>
+  
+  <!-- Return Button -->
+  <div class="button-container">
+    <ion-button expand="block" color="primary" (click)="navigateToHome()">
+      Return to Home
+    </ion-button>
+  </div>
 </ion-content>

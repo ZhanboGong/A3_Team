@@ -71,22 +71,16 @@
             <ion-list>
               <ion-item>
                 <ion-label>
-                  <h3>Problem 1: Data cannot be synchronized if two web pages are opened at the same time</h3>
-                  <p>Since this page is just a normal Angular project that uses the ngModel for data transfer and arrays
-                    for
-                    data storage instead of json for data loading, this is the case when, for example, book-management
-                    and
-                    search pages are open together. What you need to do is to use the button to navigate to the page,
-                    rather
-                    than opening a new page or using /blank.</p>
+                  <h3>Problem 1: There are many items with incorrect data in the Overview interface</h3>
+                  <p>Because this app uses a shared database, every student can manage items on it. However, the data
+                    verification of some students may have problems, so items with incorrect data may appear</p>
                 </ion-label>
               </ion-item>
               <ion-item>
                 <ion-label>
-                  <h3>Problem 2: The data does not load or the web page is stuck</h3>
-                  <p>This is probably because angular material is used and you need to restart the page using ng serve
-                    --open
-                  </p>
+                  <h3>Problem 2: The data failed to load or loaded slowly</h3>
+                  <p>Because this app uses a shared database, the database can sometimes be slow to access or fail to
+                    load, you can try to check the network condition or try refreshing.</p>
                 </ion-label>
               </ion-item>
             </ion-list>
@@ -112,9 +106,15 @@
 
 <!--In the TS code, delete the search terms in the search bar and print the filtered items-->
 <ion-content>
-  <div *ngIf="searchStatu === 'empty'">
-    <ion-card>
-      <h1>404</h1>
+  <!-- An error is displayed when the search is empty -->
+  <div *ngIf="searchStatu === 'empty'" class="empty-search-container">
+    <ion-card class="empty-search-card">
+      <div class="empty-search-content">
+        <ion-icon name="search-outline" class="empty-search-icon"></ion-icon>
+        <h1 class="empty-search-title">No Results Found</h1>
+        <p class="empty-search-text">We couldn't find any items matching your search for "{{searchTerm}}".</p>
+        <p class="empty-search-text">Please check your input or try different keywords.</p>
+      </div>
     </ion-card>
   </div>
   <ion-list>

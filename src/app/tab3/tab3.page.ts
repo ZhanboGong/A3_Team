@@ -40,6 +40,7 @@ export class Tab3Page implements OnInit {
   ngOnInit(): void {
     // Get all the item information when the tab page is initialized
     this.getItems();
+    this.initializeItem();
   }
 
   /**
@@ -72,22 +73,29 @@ export class Tab3Page implements OnInit {
       next: () => {
         this.getItems();
         this.addPrompt(this.newItem.item_name);
-        this.newItem = {
-          item_id: 0,
-          item_name: '',
-          category: 'Electronics',
-          quantity: 0,
-          price: 0,
-          supplier_name: '',
-          stock_status: 'In stock',
-          featured_item: 0,
-          special_note: ''
-        };
+        this.initializeItem();
       },
       error: (error: any) => {
         console.error('Error adding item:', error);
       }
     });
+  }
+
+  /**
+   * When the new item is added successfully, newItem is initialized
+   */
+  initializeItem() {
+    this.newItem = {
+      item_id: 0,
+      item_name: '',
+      category: 'Electronics',
+      quantity: 0,
+      price: 0,
+      supplier_name: '',
+      stock_status: 'In stock',
+      featured_item: 0,
+      special_note: ''
+    };
   }
 
   /**

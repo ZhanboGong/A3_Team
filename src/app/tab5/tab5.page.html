@@ -19,10 +19,11 @@
       </ion-button>
     </ion-item>
   </ion-toolbar>
-  
-  <!--help modal-->
+
+  <!--Help Modal-->
   <ion-modal [isOpen]="helpModelStatus">
     <ng-template>
+      <!--Return Button-->
       <ion-toolbar color="primary">
         <ion-button (click)="closeHelpModel()">
           <ion-icon name="return-down-back-outline">Return</ion-icon>
@@ -35,7 +36,8 @@
             <ion-title>Privacy Page Help</ion-title>
           </ion-toolbar>
         </ion-header>
-
+        <!--The Help content of the tab page-->
+        <!--Page Usage-->
         <ion-card>
           <ion-card-header>
             <ion-card-title>USAGE</ion-card-title>
@@ -52,7 +54,7 @@
             <p>Go to the Help page, The Help content is different for each page</p>
           </ion-card-content>
         </ion-card>
-
+        <!--Page Problem and Solving-->
         <ion-card>
           <ion-card-header>
             <ion-card-title>Problem and Solving</ion-card-title>
@@ -74,7 +76,7 @@
             </ion-list>
           </ion-card-content>
         </ion-card>
-
+        <!--Contact information of the person in charge-->
         <ion-card>
           <ion-card-header>
             <ion-card-title>Contact</ion-card-title>
@@ -117,12 +119,13 @@
     <ion-card-header>
       <ion-card-title>Our Privacy Commitments</ion-card-title>
     </ion-card-header>
-    
+
     <ion-card-content>
       <p class="policy-intro">
-        We value your privacy and are committed to protecting your personal information. Please read this policy carefully to understand our practices regarding your data.
+        We value your privacy and are committed to protecting your personal information. Please read this policy
+        carefully to understand our practices regarding your data.
       </p>
-      
+
       <!-- Policy Accordion -->
       <ion-list class="policy-list">
         <div *ngFor="let policy of privacyPolicies; let i = index">
@@ -133,7 +136,7 @@
             </ion-label>
             <ion-icon slot="end" [name]="policy.expanded ? 'chevron-up' : 'chevron-down'"></ion-icon>
           </ion-item>
-        
+
           <!-- Policy Content (Conditionally Displayed) -->
           <div *ngIf="policy.expanded" class="policy-content">
             <div *ngIf="i === 0">
@@ -167,7 +170,8 @@
                 <li>For as long as necessary to provide our services</li>
                 <li>With regular security audits and updates</li>
               </ul>
-              <p>We implement appropriate technical and organizational measures to protect your data against unauthorized access or disclosure.</p>
+              <p>We implement appropriate technical and organizational measures to protect your data against
+                unauthorized access or disclosure.</p>
             </div>
 
             <div *ngIf="i === 3">
@@ -180,7 +184,7 @@
               </ul>
               <p>We do not sell your personal information to third parties.</p>
             </div>
-          
+
             <div *ngIf="i === 4">
               <h3>User Rights</h3>
               <p>You have the right to:</p>
@@ -192,14 +196,15 @@
                 <li>Data portability (receive your data in a structured format)</li>
                 <li>Withdraw consent at any time</li>
               </ul>
-              <p>To exercise these rights, please contact our privacy team using the information provided at the bottom of this page.</p>
+              <p>To exercise these rights, please contact our privacy team using the information provided at the bottom
+                of this page.</p>
             </div>
           </div>
         </div>
       </ion-list>
     </ion-card-content>
   </ion-card>
-  
+
   <!-- Contact Information -->
   <ion-card class="contact-card">
     <ion-card-header>
@@ -223,7 +228,7 @@
       </div>
     </ion-card-content>
   </ion-card>
-  
+
   <!-- Return Button -->
   <div class="button-container">
     <ion-button expand="block" color="primary" (click)="navigateToHome()">

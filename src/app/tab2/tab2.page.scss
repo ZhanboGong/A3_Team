@@ -1,3 +1,21 @@
+// Generic styles
+%card-shared {
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+%base-color-scheme {
+    --background: var(--ion-color-light);
+    --border-color: var(--ion-color-medium);
+    --ion-color-base: #fff;
+    --ion-color-contrast: #000;
+    --ion-color-contrast-rgb: 0, 0, 0;
+    --ion-color-rgb: 255, 255, 255;
+    --ion-color-shade: #eee;
+    --ion-color-tint: #f5f5f5;
+}
+
+// Header section
 ion-header {
     box-shadow: none;
 
@@ -47,6 +65,7 @@ ion-header {
     }
 }
 
+// Content area 
 ion-content {
     --background: var(--ion-color-light);
     --ion-color-base: #fff;
@@ -57,26 +76,10 @@ ion-content {
     --ion-color-tint: #f5f5f5;
 }
 
-ion-list {
-    --background: var(--ion-color-light);
-    --border-color: var(--ion-color-medium);
-    --ion-color-base: #fff;
-    --ion-color-contrast: #000;
-    --ion-color-contrast-rgb: 0, 0, 0;
-    --ion-color-rgb: 255, 255, 255;
-    --ion-color-shade: #eee;
-    --ion-color-tint: #f5f5f5;
-}
-
+// List & Item 
+ion-list,
 ion-item {
-    --background: var(--ion-color-light);
-    --border-color: var(--ion-color-medium);
-    --ion-color-base: #fff;
-    --ion-color-contrast: #000;
-    --ion-color-contrast-rgb: 0, 0, 0;
-    --ion-color-rgb: 255, 255, 255;
-    --ion-color-shade: #eee;
-    --ion-color-tint: #f5f5f5;
+    @extend %base-color-scheme;
 }
 
 // SearchBar and Button
@@ -86,71 +89,76 @@ ion-row.search-row {
     align-items: center;
     width: 100%;
     padding: 0 12px;
-  
-    ion-col {
-      display: flex;
-      height: 48px; 
-      padding: 0 4px;
-      
-      // SearchBar 
-      &.search-col {
-        flex: 1;
-        max-width: 90%;
-        ion-searchbar {
-          --box-shadow: none;
-          --background: rgba(255,255,255,0.9);
-          --border-radius: 8px;
-          --color: #333;
-          --icon-color: #666;
-          height: 100%;
-          padding: 0;
-        }
-      }
-  
-      // Button
-      &.btn-col {
-        justify-content: flex-end;
-        max-width: 10%;
-        .search-btn {
-          --padding-start: 6px;
-          --padding-end: 6px;
-          --border-radius: 8px;
-          --background: rgba(255,255,255,0.9);
-          height: 40px;
-          width: 40px;
-          margin: auto;
-          ion-icon {
-            font-size: 22px;
-            color: #ffffff;
-          }
-          &[disabled] {
-            opacity: 0.5;
-          }
-        }
-      }
-    }
-  }
 
+    ion-col {
+        display: flex;
+        height: 48px;
+        padding: 0 4px;
+
+        // SearchBar
+        &.search-col {
+            flex: 1;
+            max-width: 90%;
+
+            ion-searchbar {
+                --box-shadow: none;
+                --background: rgba(255, 255, 255, 0.9);
+                --border-radius: 8px;
+                --color: #333;
+                --icon-color: #666;
+                height: 100%;
+                padding: 0;
+            }
+        }
+
+        // Button (完全一致)
+        &.btn-col {
+            justify-content: flex-end;
+            max-width: 10%;
+
+            .search-btn {
+                --padding-start: 6px;
+                --padding-end: 6px;
+                --border-radius: 8px;
+                --background: rgba(255, 255, 255, 0.9);
+                height: 40px;
+                width: 40px;
+                margin: auto;
+
+                ion-icon {
+                    font-size: 22px;
+                    color: #ffffff;
+                }
+
+                &[disabled] {
+                    opacity: 0.5;
+                }
+            }
+        }
+    }
+}
+
+// Card Content
 ion-card-content {
     .card-container {
         display: flex;
         justify-content: space-between;
         align-items: flex-start;
         margin-bottom: 10px;
-    }
 
-    .left-card {
-        flex: 1;
-    }
+        .left-card {
+            flex: 1;
+        }
 
-    .right-card {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-end;
-    }
+        .right-card {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
 
-    ion-icon {
-        font-size: 24px;
-        cursor: pointer;
+        ion-icon {
+            font-size: 24px;
+            cursor: pointer;
+        }
     }
 }

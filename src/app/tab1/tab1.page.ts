@@ -59,6 +59,9 @@ export class Tab1Page implements OnInit {
     console.log("Manage Page Help open");
   }
 
+  /**
+  * modal control: Set help modal's display state to false(close)
+  */
   closeHelpModel() {
     this.helpModelStatu = false;
     console.log("Manage Page Help close");

@@ -1,3 +1,4 @@
+<!--Home Tab-->
 <ion-header>
   <ion-toolbar color="primary">
     <ion-item lines="none">
@@ -104,7 +105,7 @@
 </ion-header>
 
 <ion-content>
-  <!-- 系统介绍 -->
+  <!-- Project Introduction -->
   <div class="intro-section">
     <ion-card class="header-card">
       <ion-card-header>
@@ -122,7 +123,7 @@
       </ion-card-content>
     </ion-card>
 
-    <!-- 功能介绍 -->
+    <!-- Function Introduction -->
     <ion-card class="feature-card">
       <ion-card-content>
         <ion-list lines="none">
@@ -154,14 +155,14 @@
     </ion-card>
   </div>
 
-  <!-- 统计面板 -->
+  <!-- Statistics panel -->
   <ion-card class="stats-card">
     <ion-card-header>
       <ion-card-title>Inventory Overview</ion-card-title>
     </ion-card-header>
 
     <ion-card-content>
-      <!-- 核心统计 -->
+      <!-- Statistics (all and freatured) -->
       <div class="core-stats">
         <div class="stat-item primary">
           <ion-icon name="bag" class="stat-icon"></ion-icon>
@@ -176,7 +177,7 @@
         </div>
       </div>
 
-      <!-- 分类统计 -->
+      <!-- Statistics (by item) -->
       <div class="category-grid">
         <div class="category-item" *ngFor="let category of categoryList">
           <ion-icon [name]="category.icon" class="category-icon"></ion-icon>

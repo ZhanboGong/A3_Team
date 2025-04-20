@@ -16,7 +16,7 @@ export class Tab5Page implements OnInit {
     { title: 'Third-Party Sharing', icon: 'people', expanded: false },
     { title: 'User Rights', icon: 'shield-checkmark', expanded: false }
   ];
-  
+
   lastUpdated = 'April 20, 2025';
 
   constructor(private router: Router) { }
@@ -33,9 +33,8 @@ export class Tab5Page implements OnInit {
     this.router.navigateByUrl('/tabs/tab1');
   }
 
-  /**
-   * modal control: Set help modal's display state to true(open)
-   */
+
+
   openHelpModel() {
     this.helpModelStatus = true;
     console.log("Privacy Page Help open");

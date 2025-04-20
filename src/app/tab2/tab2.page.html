@@ -20,13 +20,13 @@
     </ion-item>
     <!--The Tab's Search bar, located in the header-->
     <ion-row class="search-row">
-      <ion-col  class="search-col">
-        <ion-searchbar debounce="800" color="light" #searchInput inputmode="search" class="srchBar" 
-        mode="ios"[(ngModel)]="searchTerm" (ionChange)="searchItems()" placeholder="Search"></ion-searchbar>
+      <ion-col class="search-col">
+        <ion-searchbar debounce="800" color="light" #searchInput inputmode="search" class="srchBar" mode="ios"
+          [(ngModel)]="searchTerm" (ionChange)="searchItems()" placeholder="Search"></ion-searchbar>
       </ion-col>
-      <ion-col  class="btn-col">
-        <ion-button class="search-btn"fill="clear" color="light" mode="ios" (click)="searchItems()" 
-        [disabled]="!searchTerm"><ion-icon slot="icon-only" name="search"></ion-icon>
+      <ion-col class="btn-col">
+        <ion-button class="search-btn" fill="clear" color="light" mode="ios" (click)="searchItems()"
+          [disabled]="!searchTerm"><ion-icon slot="icon-only" name="search"></ion-icon>
         </ion-button>
       </ion-col>
     </ion-row>
@@ -112,6 +112,11 @@
 
 <!--In the TS code, delete the search terms in the search bar and print the filtered items-->
 <ion-content>
+  <div *ngIf="searchStatu === 'empty'">
+    <ion-card>
+      <h1>404</h1>
+    </ion-card>
+  </div>
   <ion-list>
     <div>
       <ion-card *ngFor="let item of items">

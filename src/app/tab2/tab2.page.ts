@@ -16,6 +16,8 @@ export class Tab2Page implements OnInit {
   // Used to control the Help Modal display state
   helpModelStatu = false;
 
+  searchStatu: "normal" | "empty" = "normal";
+
   constructor(private inventoryService: InventoryService) { }
 
   ngOnInit() {
@@ -42,6 +44,7 @@ export class Tab2Page implements OnInit {
    * 
    */
   searchItems() {
+    this.switchSearchStatu("normal");
     if (this.searchTerm) {
       this.inventoryService.getItemByName(this.searchTerm).subscribe({
         next: (items: Item[]) => {
@@ -51,13 +54,20 @@ export class Tab2Page implements OnInit {
             this.items = this.allItems.filter((item: Item) =>
               item.item_name.toLowerCase().includes(this.searchTerm.toLowerCase())
             );
+            if (this.items.length === 0) {
+              this.switchSearchStatu("empty");
+            }
           }
         },
         error: (error: any) => {
           console.error('Error searching items:', error);
           this.items = this.allItems.filter((item: Item) =>
             item.item_name.toLowerCase().includes(this.searchTerm.toLowerCase())
+
           );
+          if (this.items.length === 0) {
+            this.switchSearchStatu("empty");
+          }
         }
       });
     } else {
@@ -79,6 +89,11 @@ export class Tab2Page implements OnInit {
   closeHelpModel() {
     this.helpModelStatu = false;
     console.log("Manage Page Help close");
+  }
+
+  switchSearchStatu(searchStatu: "normal" | "empty") {
+    this.searchStatu = searchStatu;
+    console.log("The search statu is changed to " + searchStatu);
   }
 
 }

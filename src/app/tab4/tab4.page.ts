@@ -11,9 +11,13 @@ import { IonButton } from '@ionic/angular';
   styleUrls: ['./tab4.page.scss'],
 })
 export class Tab4Page implements OnInit {
+  // The array of items obtained from the back end
   items: Item[] = [];
+  // An array filtered based on the feature situation
   displayItems: Item[] = [];
+  // help modal statu
   helpModelStatu = false;
+  // Current rendering status of the item
   display: "featured" | "all" | "normal" = "featured";
   constructor(private inventoryService: InventoryService) { }
 

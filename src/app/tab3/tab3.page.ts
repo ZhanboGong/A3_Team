@@ -1,3 +1,4 @@
+// This Page is about Manage(Add, Update, Delete)
 import { Component, OnInit } from '@angular/core';
 import { InventoryService } from '../services/inventory.service';
 import { Item } from '../models/item.model';
@@ -11,7 +12,9 @@ import { IonButton } from '@ionic/angular';
   standalone: false,
 })
 export class Tab3Page implements OnInit {
+  // The array of items obtained from the back end
   items: Item[] = [];
+  // The item object bound to the Add form
   newItem: Item = {
     item_id: 0,
     item_name: '',
@@ -40,6 +43,7 @@ export class Tab3Page implements OnInit {
   ngOnInit(): void {
     // Get all the item information when the tab page is initialized
     this.getItems();
+    // Initialized the newItem when the tab page is initialized
     this.initializeItem();
   }
 
@@ -126,14 +130,13 @@ export class Tab3Page implements OnInit {
   }
 
   /**
-   * 
+   * Verify the checkedItem and then call the updateItem method on the itemService to update it
    * @returns 
    */
   updateItem() {
     if (this.checkedItem && this.lastItem) {
       const updateMessage = this.inventoryService.dataValidation(this.checkedItem, this.items);
       if (this.lastItem.item_id === this.checkedItem.item_id) {
-        // 这两个验证跳过可能得分开来
         if (updateMessage && updateMessage !== "Item ID Must be Unique!" && updateMessage !== "Item Name Must be Unique!") {
           this.validationMessage(updateMessage);
           return;

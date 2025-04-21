@@ -1,3 +1,4 @@
+// This Page is about search
 import { Component, OnInit } from '@angular/core';
 import { InventoryService } from '../services/inventory.service';
 import { Item } from '../models/item.model';
@@ -15,7 +16,7 @@ export class Tab2Page implements OnInit {
   searchTerm: any;
   // Used to control the Help Modal display state
   helpModelStatu = false;
-
+  // The status after the search is either with results or empty
   searchStatu: "normal" | "empty" = "normal";
 
   constructor(private inventoryService: InventoryService) { }
@@ -41,7 +42,9 @@ export class Tab2Page implements OnInit {
   }
 
   /**
-   * 
+   * Based on the content of searchTerm, search in the name of items. 
+   * If relevant content is Found, render it to this page. If there are No search Results, switch to the current searchStatu and render the default "No Results Found" prompt. 
+   * Meanwhile, if the search fails, the local array will be called for the search.
    */
   searchItems() {
     this.switchSearchStatu("normal");
@@ -91,6 +94,10 @@ export class Tab2Page implements OnInit {
     console.log("Manage Page Help close");
   }
 
+  /**
+   * Switch the value of searchStatu based on the search results. When the search result is empty, searchStatu is "empty", and when the search result is not empty, searchStatu is "normal".
+   * @param searchStatu It depends on the search result. When the search result is empty, searchStatu is "empty", and when the search result is not empty, searchStatu is "normal".
+   */
   switchSearchStatu(searchStatu: "normal" | "empty") {
     this.searchStatu = searchStatu;
     console.log("The search statu is changed to " + searchStatu);

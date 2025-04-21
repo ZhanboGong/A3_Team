@@ -1,3 +1,4 @@
+// This Page is about home
 import { Component, OnInit } from '@angular/core';
 import { InventoryService } from '../services/inventory.service';
 import { Item } from '../models/item.model';
